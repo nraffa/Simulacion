@@ -24,8 +24,10 @@ for row in sheet.iter_rows(min_row = 2, max_row = b, min_col = 1, max_col = a , 
     for i in range(len(headers)):
         if type(row[i]) == datetime:
             data_date = row[i]
-            corrected_date = datetime.str
-        datas[headers[i]] = row[i]
-        
+            corrected_date = datetime.strptime(data_date, "%Y-%m-%d")
+            datas[headers[i]] = row[i]
+        else:
+            datas[headers[i]] = row[i]
+                
 
 print(json.dumps(datas, indent = 2))
